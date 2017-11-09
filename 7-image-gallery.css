@@ -1,0 +1,18 @@
+giimg{
+  width: 30%;
+  float: left;
+  /* float is like gravity, here set to align them without border or newLine */
+  margin: 1.66%;
+  /* with 10% space left we have 6 margins of the 3 pictures which
+  gives us 10/6=1.66 */
+}
+p{
+  font-family: Raleway;
+  margin-left: 1.66%;
+  font-size: 23px;
+  font-weight: 800;
+  text-transform: uppercase;
+  border-bottom: 2px solid #F1F1F1;
+  width:30%;
+  padding-bottom: 20px;
+}

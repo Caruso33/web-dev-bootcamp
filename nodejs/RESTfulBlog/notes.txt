@@ -1,0 +1,23 @@
+REST:
+
+ - Mapping between HTTP routes and CRUD
+
+BLOG APP:
+
+CRREATE
+READ	/allBlogs
+UPDATE	/updateBlog/:id
+DESTROY /deleteBlog/:id
+
+Name	| Path          | HTTP  | Purpose                  | Mongoose
+--------------------------------------------------------------------------
+Index	| /dogs         | GET	| List all dogs            | dog.find()
+--------------------------------------------------------------------------
+New	    | /dogs/new     | GET	| Show new dog form        | N/A
+Create 	| /dogs         | POST	| Create new dog, redirect | dog.create()
+--------------------------------------------------------------------------
+Show 	| /dogs/:id     | GET	| Show info of specific dog| dog.findById()
+--------------------------------------------------------------------------
+Edit 	| /dogs/:id/edit| GET	| Show edit form for a dog | dog.findById()
+Update 	| /dogs/:id     | PUT	| Update a dog, redirect   | dog.findByIdAndUpdate()
+Destroy | /dogs/:id     | DELETE| Delete a dog, redirect   | dog.findByIdAndRemove()

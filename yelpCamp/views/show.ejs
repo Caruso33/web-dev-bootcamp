@@ -1,0 +1,14 @@
+<% include partials/header %>
+
+<div class='container'>
+<h1><%= campground.name %></h1>
+    <div class='row'>
+        <div class='col-sm-12'>
+            <img src='<%= campground.image %>'>
+            <p><%= campground.description %></p>
+        </div>
+    </div>
+    <a href='/campgrounds' class='btn btn-primary'>Go back</a>
+</div>
+
+<% include partials/footer %>

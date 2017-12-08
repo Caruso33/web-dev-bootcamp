@@ -1,32 +1,17 @@
 var express = require('express'),
     app = express(),
     bodyParser = require('body-parser'),
-    mongoose = require('mongoose');
+    mongoose = require('mongoose'),
+    Campground = require('./models/campground'),
+    Comment = require('./models/comment'),
+    // User = require('./models/user'),
+    seedDB = require("./seeds");
 
+seedDB();
 mongoose.connect('mongodb://localhost/yelp_camp');
+app.use(express.static('public'));
 
-//schema
-var campgroundSchema = new mongoose.Schema({
-    name: String,
-    image: String,
-    description: String
-})
 
-var Campground = mongoose.model('Campground', campgroundSchema);
-
-// Campground.create(
-//     {
-//       name: 'Granite Hill',
-//       image: 'http://fondulacpark.com/wp-content/uploads/2013/12/campground-pic-1.jpg',
-//       description: 'This is a huge granite hill, no bathrooms. No water, beautiful granite!'
-//     }, (err, campground) => {
-//         if (err) console.log(err);
-//         else{
-//             console.log('newly created campground')
-//             console.log(campground)
-//         }
-//     }
-// )
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs')
@@ -63,15 +48,15 @@ app.get('/campgrounds/new', (req, res) => {
   res.render('new.ejs')
 })
 
-app.get('/campgrounds/:id', (req, res) => {
-  Campground.findById(req.params.id, (err, foundCampground) => {
+app.get('/campgrounds/:id', (req, res) => {//populate comments of campgrounds - which got only referenced
+  Campground.findById(req.params.id).populate('comments').exec(function(err, foundCampground) {
 
     if(err) console.log('Error finding ID in Database');
     else{
       res.render('show', {campground: foundCampground})
     }
-  });
+  })
 })
-app.listen(3000, () => {
+app.listen(process.env.PORT, process.env.IP, () => {
   console.log('YelpCamp Server has started');
 })

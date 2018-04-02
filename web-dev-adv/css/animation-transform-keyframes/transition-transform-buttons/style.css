@@ -1,0 +1,75 @@
+body {
+  background: #fcd04b;
+  font-family: 'Lato';
+  color: white;
+}
+
+h1 {
+  font-weight: 300;
+  text-align:center;
+  margin-bottom: 100px;
+}
+
+.wrapper{
+  display: grid;
+  grid-gap: 50px;
+  grid-template-rows: 100px 100px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.btn {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  display: block;
+  position: relative;
+  background: #fcad26;
+  font-size: 16px;
+  font-weight: 300;
+	color: white;
+  text-transform: uppercase;
+	letter-spacing: 2px;
+  padding: 25px 80px;
+  margin: 0 auto;
+	box-shadow: 0 6px #efa424;
+  border-radius: 20px;
+}
+
+.btn:hover {
+	box-shadow: 0 4px #efa424;
+	top: 2px;
+}
+
+.btn:active {
+  box-shadow: 0 0 #efa424;
+  top: 6px;
+}
+
+.animated-button:hover{
+  background: #aaee00;
+  border-radius: 50px;
+  transform-origin: top left;
+  /* two transforms has to be defined like below */
+  transform: scale(1.5) rotate(45deg);
+  opacity: 0.5;
+}
+.slow{
+  transition-duration: 1s;
+}
+.slower{
+  /* two transforms can have 2 specified durations */
+  transition-property: transform, border-radius;
+  transition-duration: 1s, 5s;
+  transition-delay: 2s;
+}
+.time{
+  transition-property: transform;
+  transition-duration: 1s;
+  transition-timing-function: ease-in-out;
+}
+.allinone{
+  /* Property duration time-func delay */
+  transition:
+    transform 1.5s cubic-bezier(0.050, 0.005, 0.000, 0.870) 2s,
+    background 3s ease-in-out;
+}

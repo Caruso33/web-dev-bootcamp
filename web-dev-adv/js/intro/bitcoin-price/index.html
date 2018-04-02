@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>AJAX Starter</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1>Bitcoin Price</h1>
+    <p>The bitcoin price is <span id="price"></span></p>
+
+    <!-- <form class="btc-price">
+      <label>Select prefered Currency:
+        <br />
+        <input type="radio" name="currency" value="USD" checked>USD<br>
+        <input type="radio" name="currency" value="EUR">EUR<br>
+        <input type="radio" name="currency" value="GBP">GBP<br> -->
+    <button id="btn">Get Current Price!</button>
+    <!-- </label>
+    </form> -->
+  </div>
+
+  <script type="text/javascript">
+    let btn = document.querySelector('#btn');
+    // let form = document.querySelector('.btc-price').value;
+
+    btn.addEventListener('click', function(e) {
+      // let radio = document.querySelector('input[name=currency]:checked').value;
+      // document.querySelector('#price').innerHTMLradio = radio;
+
+      const XHR = new XMLHttpRequest();
+      XHR.onreadystatechange = function() {
+
+        if (XHR.readyState === 4 && XHR.status === 200) {
+          const data = JSON.parse(XHR.responseText);
+          let currency = 'USD';
+          let price = data.bpi[currency].rate;
+          document.querySelector('#price').innerHTML = price + ` ${currency}`;
+
+        }
+      }
+      XHR.open('GET', 'https://api.coindesk.com/v1/bpi/currentprice.json');
+      XHR.send()
+    })
+  </script>
+</body>
+
+</html>

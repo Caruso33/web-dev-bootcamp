@@ -1,0 +1,6 @@
+verb          route               descr
+get           /api/todos          list all todos
+post          /api/todos          create new todo
+
+put           /api/todo/:todoold  update a todo
+delete        /api/todo/:todoold  delete a todo

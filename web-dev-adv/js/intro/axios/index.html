@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+  <button>Click</button>
+  <section id="comments"> </section>
+
+  <script type="text/javascript">
+    const url = 'https://jsonplaceholder.typicode.com/comments';
+    let btn = document.querySelector('button');
+
+    btn.addEventListener('click', function(e) {
+      var appendComment = (comment) => {
+        let newP = document.createElement('p')
+        newP.innerHTML = comment.email;
+        let section = document.querySelector('#comments');
+        section.appendChild(newP);
+      }
+      const addComments = (res) => {
+        res.data.forEach((comment) => {
+          appendComment(comment)
+        })
+      }
+
+      const handleError = (err) => {
+        if (err.response) {
+          console.log('Problem with Response');
+        } else if (err.request) {
+          console.log('Problem with Request');
+        } else {
+          console.log('Error', err.message);
+        }
+      }
+      axios.get(url, {
+          params: {
+            postId: 1
+          }
+        })
+        .then(addComments)
+        .catch(handleError)
+    });
+  </script>
+</body>
+
+</html>

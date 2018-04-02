@@ -1,0 +1,29 @@
+.box{
+  background: #e74c3c;
+  height: 100px;
+  width: 100px;
+  line-height:100px;
+  text-align: center;
+  color: white;
+  font-size: 17px;
+  border-radius: 20px;
+  animation-name: slideRight;
+  animation-iteration-count: infinite;
+  animation-delay: 0;
+  animation-duration: 2s;
+  animation-direction: forwards;
+}
+.backward{
+    animation: slideRight 2s ease-in infinite 0s backwards;
+}
+.reverse{
+    animation: slideRight 2s ease-in infinite 0s reverse;
+}
+.alternate{
+    animation: slideRight 2s ease-in infinite 0s alternate;
+}
+@keyframes slideRight {
+  100% {
+    transform: translateX(500px);
+  }
+}

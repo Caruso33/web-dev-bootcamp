@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <h1>Random User Generator</h1>
+  <div class="user">
+    <img id="userimg" src="" alt="">
+    <h2 id="username"></h2>
+    <h3 id="usersub"></h3>
+    <p id="useremail"></p>
+    <p id="usercity"></p>
+    <button id="btn">Next User!</button>
+  </div>
+
+
+
+  <script type="text/javascript">
+    const btn = document.querySelector('#btn');
+    btn.addEventListener('click', function(e) {
+
+      fetch('https://randomuser.me/api/')
+        .then(handleError)
+        .then(returnJson)
+        .then(updateProfile)
+        .catch((err) => {
+          console.log(err);
+        })
+    });
+
+
+
+    let handleError = response => {
+      if (data.status === 200) {
+        return response;
+      } else {
+        throw Error(res.status);
+      }
+    }
+    let returnJson = (data) => {
+      return data.json().then((parsedData) => {
+
+        return parsedData.results[0];
+      })
+    }
+
+    let updateProfile = parsedData => {
+
+      let name = `${parsedData.name.first} ${parsedData.name.last}`;
+      let img = `${parsedData.picture.medium}`
+      let email = `${parsedData.email}`
+      let sub = `${parsedData.login.username}`
+      let city = `${parsedData.location.city}`
+
+      document.querySelector('#userimg').src = img;
+      document.querySelector('#username').innerHTML = name;
+      document.querySelector('#usersub').innerHTML = sub;
+      document.querySelector('#useremail').innerHTML = email;
+      document.querySelector('#usercity').innerHTML = city;
+    }
+  </script>
+</body>
+
+</html>
